@@ -105,3 +105,11 @@ Let's look at this demo in javascript...
 ### You Do: Study Big-O Families
 
 [Write down the complexities of these functions](https://gist.github.com/amaseda/c4283f5c58b9b68be9318259098f0298). 
+
+
+## Learn More!
+* https://www.youtube.com/watch?v=V6mKVRU1evU
+* http://www.cs.cmu.edu/afs/cs/academic/class/15451-s10/www/lectures/lect0203.pdf
+* https://stackoverflow.com/questions/487258/what-is-a-plain-english-explanation-of-big-o-notation/487278
+* https://www.codenewbie.org/basecs
+
