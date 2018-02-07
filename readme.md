@@ -4,17 +4,21 @@
 * Identify what makes a good algorithm
 * Use Big-O Analysis to Evaluate Algorithms
 
-### What makes a good algorithm?
+### Framing (10 min / 9:10)
 
-When we work with relatively small inputs, like we have for the most part in this class, using an efficient algorithm to solve a problem is not crucial. Instead, it is more important to have clean code, good interfaces, and bug-less applications. However, once we are working with huge inputs our code will get a lot slower. At that point, building efficient algorithms becomes really important.
+Last week we learned what an algorithm is and why they are so important to the field of computer science.  This week we'll learn about how programmers measure the efficiency of algorithms and which types of algorithms are the most efficient in terms of *time* and *memory* consumption.  
 
-When we write code, one of our main goals is to make that code execute quickly. If our code is inefficient, our sites will load slowly and users may leave. We also want to use as little memory as possible when we execute our code so that it is less expensive to host our sites. These are usually the two best measures of the effectiveness of an algorithm, their speed and their memory use.
+Who can remind me what the definition of an algorithm is?
 
-## Run Time and Big-O Analysis
+To restate from last class, while we are still learning the fundamentals and are working with relatively *small inputs*, it is more important to have clean code, good interfaces, and bug-less applications. However, as our inputs grow in size, having efficient algorithms becomes extremely important!
 
-We can look at a program and say -- "Oh that took two seconds to run". But that two seconds is dependent on a lot of factor. That two seconds is for a very specific input. If we make the input 100 items instead of 10, what happens? Also, that two seconds is on a certain computer with a certain version of your programming language. Instead, we should generalize the algorithm's complexity.
+Our main concerns in terms of efficiency are *time* and *memory*. If our sites load slowly, users may leave. If our code takes up too much memory, it will be more expensive to host our sites.  
 
-We do so using a notation that mathematicians and computer scientists use, called Big-O notation. This notation standardizes how we discuss the efficiency of algorithms. Most of the time, we use Big-O notation to describe time complexity, but we can also use it to describe memory efficiency.
+## Run Time and Big-O Analysis (30 min / 9:40)
+
+We can look at a program and say -- "Oh that took two seconds to run". But that two seconds is dependent on a lot of factors. That two seconds is for a very specific input - your computer on your network with a certain version of your programming language. Instead, we should generalize the algorithm's complexity.
+
+We do so using a notation that mathematicians and computer scientists use, called Big-O notation. This notation standardizes how we discuss the efficiency of algorithms. ***Big-O really tells us how quickly the runtime grows as the input becomes arbitrarily large***.  Most of the time, we use Big-O notation to describe time complexity, but we can also use it to describe memory efficiency.
 
 Big-O notation is not an exact metric for benchmarking algorithms. Rather, it gives us an abstract idea about how costly or efficient an algorithm is, with respect to how much computing power it takes. With Big-O notation, we are comparing orders of magnitude.
 
@@ -26,7 +30,7 @@ For time complexity, we want to count how many times the code is run in context 
 
 ### O(1) Complexity (aka Constant Complexity)
 
-O(1) means that an algorithm's runtime is static or constant. The complexity stays the same no matter the input.
+O(1) means that an algorithm's runtime is static or constant. *The complexity stays the same no matter the input*.
 
 ```javascript
 function helloWorld (arr) {
@@ -42,7 +46,7 @@ In both of the above examples, no matter what size the `arr` argument is, the fu
 
 ### O(N) Complexity (aka Linear Complexity)
 
-O(N) complexity means that, as the input sizes increase, the processing time increases linearly. Or, more simply, the code runs once for each input.
+O(N) complexity means that, as the input sizes increase, the processing time increases linearly. Or, more simply, *the code runs once for each input*.
 
 ```javascript
 function iterate (arr) {
@@ -64,7 +68,7 @@ In each of the above examples, we go through the array and perform an action wit
 
 ### O(N^2) Complexity (aka Quadratic Complexity)
 
-For an input with the size n, quadratically complex algorithms execute n*n times. 
+For an input with the size n, *quadratically complex algorithms execute `n*n` times*.
 
 ```javascript
 function consoleLogLots (arr) {
@@ -82,7 +86,75 @@ For the array `[1, 3]`, this function will print:
 [3, 1]
 [3, 3]
 ```
-For a 2 item array, the code executes 4 times. This scales pretty fast -- for an array with 100 items this code will `console.log` 10,000 times!
+For a 2 item array, the code executes 4 times. For 3 items, the code executes 9 times.  This scales pretty fast -- for an array with 100 items this code will `console.log` 10,000 times!
+
+### O(log n) and O(n log n) Complexity
+
+O(log n) refers to algorithms which cut the problem in half each time. These have significantly lower complexity than O(n). We don't actually have to calculate logarithms or anything like that! Technically, a logarithm is a "quantity representing the power to which a fixed number (the base) must be raised to produce a given number." [source](https://en.wikipedia.org/wiki/Logarithm)
+>Examples...
+
+- the base 10 logarithm of 1000 is 3 since 10^3 is 1000.
+- log<sub>2</sub> 32 = 5
+
+One example of an O(log n) algorithm is a **binary search**. In an *unsorted* array, if we want to find the index of an item with a given value, we have to iterate through it and check if each item is equal to the item we are searching for. However, if we know that we have a **sorted** array, we can do this a lot easier!
+
+For the array `[1, 3, 5, 7, 9, 11, 13]`, if we want to find the index of the 5, we can do so like this:
+* Find the item at the midpoint of the array. This ends up being `7`.
+* Our item is below 7, so then, since our array is sorted, we only have to search the half of the array before the 7.
+* The midpoint of the sub array from 1-7 or `[1, 3, 5]` is `3`.
+* This time, 5 is larger than 3, so we search the sub-array `[5]`. Since the midpoint of that array `5` is equal to the number we are searching for, we just return that number.
+
+Let's checkout a ***[visualization](https://www.cs.usfca.edu/~galles/visualization/Search.html)***
+
+An implementation of that algorithm is below:
+```javascript
+function binarySearch(arr, item, first = 0, last = null) {
+	if (!last) last = arr.length
+
+	let midpoint = (last - first) / 2 + first
+
+	if (arr[midpoint] === item) return midpoint
+	if (arr[midpoint] > item) return binarySearch(arr, item, first, midpoint)
+	if (arr[midpoint] < item) return binarySearch(arr, item, midpoint, last)
+}
+```
+
+The above function ran 3 times instead of the 7 that we would need if we iterated through the entire array! This algorithm is super efficient -- even if we have a million items in our array, on average we will only need to execute the binary search 20 times.
+
+O(n log n) algorithms are ones that are faster than O(n^2) but slower than O(n). Let's come back to O(n log n) in a minute -- a lot of sorting algorithms fall under this category.
+
+### O(n!) and O(2^n)
+
+O(n!) and O(2^n) complexities should make you very nervous! These should be avoided at all costs. One example of an O(n!) algorithm is the Bogosort - aka the slowsort. This sort is when an array is randomly ordered over and over again until it is in the correctly sorted order. For an array with the length 10, this sort may have to run up to 3,628,800 times! Sometimes you will have to look at all the available combinations and writing code that are in these complexity categories can't be avoided, but they should bring up some red flags!
+
+### Drop the Coefficients, Constants, and less Significant Terms
+
+Again, having an efficient algorithm is much more important when we have large inputs. By convention, we drop the coefficients and constants during Big-O analysis since they are usually negligible for those inputs.
+
+For example:
+```javascript
+function iter (arr) {
+	// Big-O: N
+	arr.forEach(item => console.log(item))
+	arr.forEach(item => console.log(item))
+	console.log('hello world')
+}
+
+function helloWorld () {
+	// Big-O: 1
+	console.log('hello world')
+	console.log('hello world')
+}
+```
+The above examples, at first look would have complexities of O(2N + 1) and O(2) respectively; however, in order to keep things simple, we can drop the coefficients. The time complexities are still linear and constant respectively. We take the least efficient operation within the block of code to measure its efficiency.
+
+Here are some more examples where you want to drop the less significant terms...
+
+<code>O(n​<sup>3</sup> ​​+ 50n<sup>​2</sup>​​ + 10000) = O(n​<sup>3</sup>​​)</code>
+
+<code>O(n+30) x O(n+5) = O(n​<sup>2</sup>​​)</code>
+
+The most significant term always wins out in the end!
 
 ### Big-O Summary
 ![](https://i.stack.imgur.com/jIGhf.png)
@@ -92,8 +164,10 @@ The following table shows how algorithms with different complexities scale when 
 |Complexity |1|10      |100  |
 |-----------|-|--------|-----|
 |O(1)       |1| 1      |1    |
+|O(log N)   |0| 2      |5    |
 |O(N)       |1|10      |100                            |
-|O(N^2)     |1|100     |10000                          | 
+|O(N log N) |0|20      |461                            |
+|O(N^2)     |1|100     |10000                          |
 |O(2^N)     |1|1024    |1267650600228229401496703205376|       
 |O(N!)      |1|3628800 |doesn't fit on screen! |
 
@@ -102,9 +176,9 @@ Let's look at this demo in javascript...
 - Code: [JS](https://git.generalassemb.ly/ga-wdi-lessons/cs-algorithms/blob/master/js-example/script.js), [HTML](https://git.generalassemb.ly/ga-wdi-lessons/cs-algorithms/blob/master/js-example/index.html)
 - [Deployed](http://aboard-thought.surge.sh)
 
-### You Do: Study Big-O Families
+### You Do: Study Big-O Families (10 min / 9:50)
 
-[Write down the complexities of these functions](https://gist.github.com/amaseda/c4283f5c58b9b68be9318259098f0298). 
+[Write down the complexities of these functions](https://gist.github.com/amaseda/c4283f5c58b9b68be9318259098f0298).
 
 
 ## Learn More!
