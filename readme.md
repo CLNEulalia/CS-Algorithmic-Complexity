@@ -109,9 +109,9 @@ Let's checkout a ***[visualization](https://www.cs.usfca.edu/~galles/visualizati
 An implementation of that algorithm is below:
 ```javascript
 function binarySearch(arr, item, first = 0, last = null) {
-	if (!last) last = arr.length
-
-	let midpoint = (last - first) / 2 + first
+	if (!last) last = arr.length - 1
+  
+	let midpoint = Math.floor((last - first) / 2) + first
 
 	if (arr[midpoint] === item) return midpoint
 	if (arr[midpoint] > item) return binarySearch(arr, item, first, midpoint)
@@ -129,7 +129,7 @@ O(n!) and O(2^n) complexities should make you very nervous! These should be avoi
 
 ### Drop the Coefficients, Constants, and less Significant Terms
 
-Again, having an efficient algorithm is much more important when we have large inputs. By convention, we drop the coefficients and constants during Big-O analysis since they are usually negligible for those inputs.
+With Big-O analysis, it is convention to drop the coefficients and constants. This helps us generalize our how efficient our algorithms will be.  
 
 For example:
 ```javascript
