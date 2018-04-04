@@ -178,7 +178,7 @@ Let's look at this demo in javascript...
 
 ### You Do: Study Big-O Families (10 min / 9:50)
 
-[Write down the complexities of these functions](https://gist.github.com/amaseda/c4283f5c58b9b68be9318259098f0298).
+[Write down the complexities of these functions](https://git.generalassemb.ly/ga-wdi-lessons/cs-algorithmic-complexity/blob/master/big-o-exercise.md).
 
 
 ## Learn More!
