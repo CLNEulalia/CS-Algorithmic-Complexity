@@ -4,7 +4,85 @@
 * Identify what makes a good algorithm
 * Use Big-O Analysis to Evaluate Algorithms
 
-### Framing (10 min / 9:10)
+# Concepts in Computer Science: Algorithms
+
+## Learning Objectives
+
+By the end of this, developers should be able to...
+
+-   Define "algorithm"
+-   Identify what Big-O time-complexity measures
+-   Give an example of a divide-and-conquer algorithm
+-   Predict the time-complexity of a given algorithm
+
+## Computer Science (10 minutes, 0:10)
+
+> "Computer science is a discipline that involves the understanding and design of computers and computational processes. In its most general form it is concerned with the understanding of information transfer and transformation. Particular interest is placed on making processes efficient and endowing them with some form of intelligence. The discipline ranges from theoretical studies of algorithms to practical problems of implementation in terms of computational hardware and software."
+>
+> ([Source](https://www.cs.mtu.edu/~john/whatiscs.html))
+
+Computer Science fields include but are not limited to...
+- Algorithms
+- Data structures
+- Mathematical logic
+- Networking
+- Computer Architecture
+- Theory (Coding, Game, Graph)
+- Artificial intelligence
+
+> [This Wikipedia article](https://en.wikipedia.org/wiki/Outline_of_computer_science#Subfields) has a nice summary of CS subfields.
+
+Many think of computer science as a necessary prerequisite to do anything programming-related with a computer and *really know what you are doing*, or that knowing a certain amount of computer science is some kind of litmus test for a *true programmer*. This attitude perhaps unnecessarily mystifies an already difficult subject and field of study and, at worst, makes the learning curve seem so steep that it is like a learning barrier.
+
+What do you already know about computer science?
+
+Decades ago, it was absolutely necessary to have an understanding of computer science to do anything with a computer. In the beginning of consumer computing, home computers were essentially electronics projects for enthusiasts and hardcore hobbyists. The types of things you could do with a computer were very limited, and of interest to people with specific interests. Computers have come a long way since then, and are equipped with operating systems that attempt to make it as easy as possible for anyone to use a computer.
+
+Something similar is true for programming, namely that not knowing any computer science is no longer a barrier to entry.
+
+### How Can We Use Computer Science?
+
+**Computer science provides methods and concepts for evaluating what we are doing as programmers.** At the very least, understanding some computer science can simply deepen our appreciation for our discipline and our craft. Not everyone who programs all of sudden thinks inherently, or has to think, like the stereotype of an engineer might think.
+
+What does computer science have to do with modern web development? Not much, on the surface. As application developers, we can do our job well by following best practices, guided by our experience. It probably will not be often that you are interested in the time-complexity of a method you write.
+
+Complexity and data structures are something **engineers** worry about, not developers, right?
+
+Well, no. While it is true that we don't usually care much about optimization,
+there are a few reasons why developers should care a bit about classic topics in
+introductory computer science (CS).
+
+1. Classic problems allow us to practice our problem solving skills; in fact, most of our lesson today can be completed without coding.
+2.  Being familiar with the tradeoffs inherent in choosing an algorithm or a data structure have direct parallels in choices you make writing your application code.
+3. Some of our colleagues will have CS degrees, and being able to understand the jargon and figures of speech they use helps us communicate with them. Perhaps most importantly, these colleagues will probably have some say in hiring you, since they're your prospective team. Nearly every technical interview touches on these topics.
+
+## Algorithms (5 minutes, 0:15)
+
+> algorithm (n.) - a process or set of rules to be followed to attain a goal
+
+Algorithm is a fancy word for recipe. When we have a problem, we take a **series
+of steps to solve that problem**. Say I want a peanut butter and jelly sandwich,
+and Andy has agreed to make it for me. The problem is, he doesn't know how.
+Assuming an otherwise-adult set of knowledge, how might we tell Andy to make me
+a sandwich?
+
+> 1.  Go to the kitchen
+> 1.  Find the bread, toaster, utensils, peanut butter, and jelly
+> 1.  Toast the bread
+> 1.  Using a knife or spoon, spread one slice of toast with peanut butter
+> 1.  Spread the other slice of toast with jelly
+> 1.  Place the two pieces of bread together
+> 1.  Return to me with the sandwich (most important step)
+
+If Andy needed to make sandwiches for all of us, how would he do that? What's
+the "easy" way to obtain many sandwiches? What is a more efficient way?
+
+### Think-Pair-Share: Outline an Algorithm (5 minutes, 0:20)
+
+Take 3 minutes to write down your day-initialization algorithm (i.e., your morning routine). Share it with a neighbor. How many steps are there? How do you or could you save time if you're in a rush?
+
+
+### Big-O (10 min / 9:10)
 
 Last week we learned what an algorithm is and why they are so important to the field of computer science.  This week we'll learn about how programmers measure the efficiency of algorithms and which types of algorithms are the most efficient in terms of *time* and *memory* consumption.  
 
@@ -50,17 +128,17 @@ O(N) complexity means that, as the input sizes increase, the processing time inc
 
 ```javascript
 function iterate (arr) {
-	arr.forEach(item => console.log(item))
+  arr.forEach(item => console.log(item))
 }
 
 function iterateLoop (arr) {
-	for (let i = 0; i < arr.length; i++) {
-		console.log(arr[i])
-	}
+  for (let i = 0; i < arr.length; i++) {
+     console.log(arr[i])
+  }
 }
 
 function addOne (arr) {
-	return arr.map(item => item + 1)
+  return arr.map(item => item + 1)
 }
 ```
 
@@ -72,11 +150,11 @@ For an input with the size n, *quadratically complex algorithms execute `n*n` ti
 
 ```javascript
 function consoleLogLots (arr) {
-	for (let i = 0; i < arr.length; i++) {
-		for (let j = 0; j < arr.length; j++) {
-			console.log(arr[i], arr[j])
-		}
-	}
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      console.log(arr[i], arr[j])
+    }
+  }
 }
 ```
 For the array `[1, 3]`, this function will print:
@@ -134,16 +212,16 @@ With Big-O analysis, it is convention to drop the coefficients and constants. Th
 For example:
 ```javascript
 function iter (arr) {
-	// Big-O: N
-	arr.forEach(item => console.log(item))
-	arr.forEach(item => console.log(item))
-	console.log('hello world')
+  // Big-O: N
+  arr.forEach(item => console.log(item))
+  arr.forEach(item => console.log(item))
+  console.log('hello world')
 }
 
 function helloWorld () {
-	// Big-O: 1
-	console.log('hello world')
-	console.log('hello world')
+  // Big-O: 1
+  console.log('hello world')
+  console.log('hello world')
 }
 ```
 The above examples, at first look would have complexities of O(2N + 1) and O(2) respectively; however, in order to keep things simple, we can drop the coefficients. The time complexities are still linear and constant respectively. We take the least efficient operation within the block of code to measure its efficiency.
