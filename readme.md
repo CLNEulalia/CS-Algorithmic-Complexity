@@ -163,7 +163,7 @@ The question it's asking us is: what would I need to raise 2 to the power of in 
 
 How would we find this? We would need to continuously divide our end result 32 by our base 2 and count the amount of times it takes to get all the way down to 1. In other words, we need to keep halving our end result until we get the solution.
 
-32 > 16 > 8 > 4 > 2 > 1
+32 => 16 => 8 => 4 => 2 => 1
 
 How many times did we have to halve until we got down to 1? 5 times, therefore n = 5, which we can easily prove by taking 2^5. 
 
