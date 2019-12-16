@@ -1,4 +1,4 @@
-# Introduction to Computer Science, Algorithms, and Big-O Notation 
+# Introduction to Computer Science, Algorithms, and Big-O 
 
 For today's morning exercise, we will start our foray into the basic fundamentals of computer science, starting with big-o notation.
 
@@ -149,7 +149,7 @@ For a 2 item array, the code executes 4 times. For 3 items, the code executes 9 
 
 </p></details>
 
-## O(log n) and O(n log n) Complexity AKA Logarithmic Complexity 
+## `O(log n)` and `O(n log n)` Complexity AKA Logarithmic Complexity 
 
 O(log n) refers to algorithms which cut the problem in half each time. We don't actually have to calculate logs or anything like that, but let's have a quick refresher on logarithms to understand what we mean by "cutting in half". 
 
