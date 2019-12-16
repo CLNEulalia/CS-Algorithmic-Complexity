@@ -249,4 +249,4 @@ Feeling like you need to hear it all again?
 
 Ready to work through figuring out some Big O on your own?
 
-- See the big-o-activity markdown
+- [See the big-o-activity markdown](big-o-exercise.md)
