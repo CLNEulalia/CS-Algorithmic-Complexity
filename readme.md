@@ -188,7 +188,7 @@ That sort of algorithm has a complexity of O(log n) as it cuts the problem in ha
 
 </p></details>
 
-## O(N!) Complexity AKA Factorial Complexity 
+## `O(N!)` Complexity AKA Factorial Complexity 
 
 A refresher on factorials: a factorial of a number is product of all positive integers less than or equal to that number. 
 
