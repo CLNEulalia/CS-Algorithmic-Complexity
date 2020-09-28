@@ -219,6 +219,12 @@ Remember the general from earlier:
 1. When we calculate the Big-O of the function, we are calculating the _worst possible runtime case_ for a given function.
 1. We always ignore constants / coefficients in order to _generalize_ the efficiency 
 
+For these types of problems, ask yourself: 
+- Does the function have to go through an entire list? If so, there's an N in that Big O class somewhere.
+- Are there nested loops? That might give you O(N^2) (or worse).
+- Does the function break the list into smaller chunks? You could have O(log(N)).
+- Is the amount of work the same, regardless of the size of the dataset? That means it's O(1).
+
 ### Let's do some examples: 
 
 What is the Big-O of this helloWord function?
