@@ -249,10 +249,6 @@ const bigO = (n) => {
 
 ## Your Turn 
 
-Feeling like you need to hear it all again?
-
-- Go to [myGA](http://my.generalassemb.ly/) and study! For this particular lesson, I would suggest going through the Intro to CS / Intro to Algorithms / Big-O Notation modules 
-
 Ready to work through figuring out some Big O on your own?
 
 - [See the big-o-activity markdown](big-o-exercise.md)
